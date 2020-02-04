@@ -14,12 +14,10 @@ public class PlayerManager : MonoBehaviour
     public bool isBlocking;
     public int blockValue;
 
-    private void Start() {
+    public void InitializeDeck(int cards) {
         ui = this.gameObject.GetComponent<PlayerUI>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
 
-    public void InitializeDeck(int cards) {
         deck = new Deck();
         deck.card = new Cards[cards];
 

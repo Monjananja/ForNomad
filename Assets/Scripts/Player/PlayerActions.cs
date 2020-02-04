@@ -41,6 +41,7 @@ public class PlayerActions : MonoBehaviour
 
         ui.ClearAllSlots();
 
+        CheckIfUnblock();
         manager.FinishTurn();
     }
 
@@ -58,6 +59,8 @@ public class PlayerActions : MonoBehaviour
         ui.PopulateSlot(player.deck.card[index], slot);
         player.cardFromDeck++;
         CheckIfReshuffle();
+        CheckIfUnblock();
+
         manager.FinishTurn();
     }
 
@@ -82,6 +85,13 @@ public class PlayerActions : MonoBehaviour
         if (player.cardFromDeck == (manager.cardsPerDeck - 1)) {
             decks.ShuffleDeck(player.deck);
             player.cardFromDeck = 0;
+        }
+    }
+
+    void CheckIfUnblock() {
+        if (player.isBlocking) {
+            player.isBlocking = false;
+            player.blockValue = 0;
         }
     }
 }
