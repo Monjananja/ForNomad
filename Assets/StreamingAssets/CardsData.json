@@ -1,0 +1,104 @@
+{
+  "cardsRoot": [
+    {
+      "name": "Uppercut",
+      "pointsAttack": 1,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Channeling",
+      "pointsAttack": 1,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Upperkick",
+      "pointsAttack": 2,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Fire Bolt",
+      "pointsAttack": 2,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Back Kick",
+      "pointsAttack": 3,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Ice Cone",
+      "pointsAttack": 3,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Beating Blow",
+      "pointsAttack": 4,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Blood Flush",
+      "pointsAttack": 4,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Kicking Smash",
+      "pointsAttack": 5,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Starfall",
+      "pointsAttack": 5,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Releasing Knock",
+      "pointsAttack": 6,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Twin Kiss",
+      "pointsAttack": 6,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Tornado Blow",
+      "pointsAttack": 7,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Gentle Lynx",
+      "pointsAttack": 7,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Brutal Mountain Blitz",
+      "pointsAttack": 8,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Lightning",
+      "pointsAttack": 8,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Feather Punch",
+      "pointsAttack": 9,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Nova Blast",
+      "pointsAttack": 9,
+      "typeAttack": "magical"
+    },
+    {
+      "name": "Roundhouse Kick",
+      "pointsAttack": 10,
+      "typeAttack": "physical"
+    },
+    {
+      "name": "Fireball",
+      "pointsAttack": 10,
+      "typeAttack": "magical"
+    }
+  ]
+}
