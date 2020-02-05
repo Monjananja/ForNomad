@@ -14,10 +14,15 @@ public class GameManager : MonoBehaviour
     PlayerManager player2;
     PlayerUI player1UI;
     PlayerUI player2UI;
+    PlayerActions player1Actions;
+    PlayerActions player2Actions;
     GeneralUI ui;
 
     bool turnPlayer1;
+    bool turnPlayer2;
     bool gameEnded;
+    string actionPlayer1;
+    string actionPlayer2;
 
     // Start is called before the first frame update
     private void Start() {
@@ -28,6 +33,8 @@ public class GameManager : MonoBehaviour
         player2 = GameObject.Find("Player2").GetComponent<PlayerManager>();
         player1UI = GameObject.Find("Player1").GetComponent<PlayerUI>();
         player2UI = GameObject.Find("Player2").GetComponent<PlayerUI>();
+        player1Actions = GameObject.Find("Player1").GetComponent<PlayerActions>();
+        player2Actions = GameObject.Find("Player2").GetComponent<PlayerActions>();
 
         InitializeGame();
     }
@@ -54,52 +61,77 @@ public class GameManager : MonoBehaviour
         player2.health = maxHealth;
         player2UI.UpdateHealthUI(player2.health);
 
-        RandomizeTurn();
-    }
-
-    void RandomizeTurn() {
-        int player = Random.Range(0, 100);
-
-        if (player < 50) {
-            player1.StartTurn();
-            player2.EndTurn();
-            turnPlayer1 = true;
-        } else {
-            player2.StartTurn();
-            player1.EndTurn();
-            turnPlayer1 = false;
-        }
-
         gameEnded = false;
-        //Debug.Log(player);
+        player1.StartTurn();
+        turnPlayer1 = true;
+        player2.StartTurn();
+        turnPlayer2 = true;
     }
 
-    public void FinishTurn() {
+    public void FinishTurn(int player, string action) {
         if (!gameEnded) {
-            if (turnPlayer1) {
-                player2.StartTurn();
-                player1.EndTurn();
-                turnPlayer1 = false;
+            switch (player) {
+                case 1:
+                    player1.EndTurn();
+                    turnPlayer1 = false;
+                    actionPlayer1 = action;
+                    break;
+                case 2:
+                    player2.EndTurn();
+                    turnPlayer2 = false;
+                    actionPlayer2 = action;
+                    break;
             }
-            else {
-                player1.StartTurn();
-                player2.EndTurn();
-                turnPlayer1 = true;
+        }
+
+        if (!turnPlayer1 && !turnPlayer2) {
+            if (actionPlayer1 == "Charge") {
+                player1Actions.Charge();
             }
+            if (actionPlayer2 == "Charge") {
+                player2Actions.Charge();
+            }
+
+            if (actionPlayer1 == "Block") {
+                player1Actions.Block();
+            }
+            if (actionPlayer2 == "Block") {
+                player2Actions.Block();
+            }
+
+            if (actionPlayer1 == "Attack") {
+                player1Actions.Attack();
+            }
+            if (actionPlayer2 == "Attack") {
+                player2Actions.Attack();
+            }
+
+            actionPlayer1 = "";
+            actionPlayer2 = "";
+
+            player1Actions.CheckIfUnblock();
+            player1.StartTurn();
+            turnPlayer1 = true;
+
+            player2Actions.CheckIfUnblock();
+            player2.StartTurn();
+            turnPlayer2 = true;
         }
     }
 
-    public void EndGame() {
+    public void EndGame(int player) {
         player1.EndTurn();
         player2.EndTurn();
 
         string winner = "";
 
-        if (turnPlayer1) {
-            winner = "Player 1";
-        }
-        else {
-            winner = "Player 2";
+        switch (player) {
+            case 1:
+                winner = "Player 1";
+                break;
+            case 2:
+                winner = "Player 2";
+                break;
         }
 
         gameEnded = true;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     public GameObject otherPlayer;
+    public int numPlayer;
 
     PlayerManager player;
     PlayerUI ui;
@@ -24,6 +25,10 @@ public class PlayerActions : MonoBehaviour
         enemyUI = otherPlayer.GetComponent<PlayerUI>();
     }
 
+    public void AttackUI() {
+        manager.FinishTurn(numPlayer, "Attack");
+    }
+
     public void Attack() {
         int damage = 0;
 
@@ -37,12 +42,13 @@ public class PlayerActions : MonoBehaviour
             }
         }
 
-        enemy.DealDamage(damage);
+        enemy.DealDamage(damage, numPlayer);
 
         ui.ClearAllSlots();
+    }
 
-        CheckIfUnblock();
-        manager.FinishTurn();
+    public void ChargeUI() {
+        manager.FinishTurn(numPlayer, "Charge");
     }
 
     public void Charge() {
@@ -59,9 +65,10 @@ public class PlayerActions : MonoBehaviour
         ui.PopulateSlot(player.deck.card[index], slot);
         player.cardFromDeck++;
         CheckIfReshuffle();
-        CheckIfUnblock();
+    }
 
-        manager.FinishTurn();
+    public void BlockUI() {
+        manager.FinishTurn(numPlayer, "Block");
     }
 
     public void Block() {
@@ -77,8 +84,6 @@ public class PlayerActions : MonoBehaviour
 
         //Debug.Log("Block Value: " + block);
         player.blockValue = block;
-
-        manager.FinishTurn();
     }
 
     void CheckIfReshuffle() {
@@ -88,7 +93,7 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    void CheckIfUnblock() {
+    public void CheckIfUnblock() {
         if (player.isBlocking) {
             player.isBlocking = false;
             player.blockValue = 0;

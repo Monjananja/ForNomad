@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
         ui.UpdateTurnUI(false);
     }
 
-    public void DealDamage(int damage) {
+    public void DealDamage(int damage, int player) {
         //Debug.Log("Block " + isBlocking);
 
         if (isBlocking) {
@@ -48,7 +48,7 @@ public class PlayerManager : MonoBehaviour
         ui.UpdateHealthUI(health);
 
         if (health <= 0) {
-            manager.EndGame();
+            manager.EndGame(player);
         }
     }
 }
